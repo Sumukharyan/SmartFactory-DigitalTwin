@@ -1,19 +1,21 @@
 from fastapi import FastAPI
 
+from app.core.config import settings
+from app.core.logging import logger
+
 app = FastAPI(
-    title="Smart Factory Digital Twin API",
-    description="Backend API for Smart Factory Digital Twin Platform",
-    version="1.0.0"
+    title=settings.APP_NAME,
+    version=settings.VERSION
 )
 
+@app.on_event("startup")
+def startup():
+
+    logger.info("Application Started")
+
 @app.get("/")
-def root():
+def home():
+
     return {
         "message": "Welcome to Smart Factory Digital Twin API"
-    }
-
-@app.get("/health")
-def health():
-    return {
-        "status": "healthy"
     }
