@@ -30,7 +30,7 @@ This project is being developed as an **8-week portfolio project** following pro
 
 ---
 
-# Current Progress
+## Current Progress
 
 | Phase | Status |
 |--------|--------|
@@ -38,14 +38,17 @@ This project is being developed as an **8-week portfolio project** following pro
 | GitHub Repository Setup | ✅ Completed |
 | Backend Initialization | ✅ Completed |
 | FastAPI Setup | ✅ Completed |
-| REST API Development | 🟡 In Progress |
-| Database Integration | ⏳ Upcoming |
+| Modular API Architecture | ✅ Completed |
+| API Versioning | ✅ Completed |
+| Pydantic Schemas | ✅ Completed |
+| Swagger Documentation | ✅ Completed |
+| Database Integration | 🚧 Next |
 | MQTT Integration | ⏳ Upcoming |
 | Machine Learning | ⏳ Upcoming |
 | Dashboard | ⏳ Upcoming |
 | Deployment | ⏳ Upcoming |
 
-Overall Progress: **20%**
+Overall Progress: **30%**
 
 ---
 
@@ -86,7 +89,20 @@ Overall Progress: **20%**
 - GitHub Actions
 
 ---
+## Current Features
 
+- RESTful API built with FastAPI
+- Modular API routing using APIRouter
+- API versioning (`/api/v1`)
+- Environment-based configuration
+- Structured application logging
+- Pydantic request/response models
+- Interactive Swagger UI
+- Health monitoring endpoint
+- Machine API endpoint
+- Sensor API endpoint
+
+---
 # Current Project Structure
 
 ```text
@@ -127,36 +143,14 @@ SmartFactory-DigitalTwin
 
 ---
 
-# API Endpoints
+## API Endpoints
 
-## Root Endpoint
-
-```http
-GET /
-```
-
-Response
-
-```json
-{
-    "message": "Welcome to Smart Factory Digital Twin API"
-}
-```
-
----
-
-## Health Check
-
-```http
-GET /health
-```
-
-Response
-
-```json
-{
-    "status": "healthy"
-}
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/` | Welcome endpoint |
+| GET | `/api/v1/health` | Health check |
+| GET | `/api/v1/machines` | Retrieve machine information |
+| GET | `/api/v1/sensors` | Retrieve sensor information |
 ```
 
 ---
@@ -283,6 +277,35 @@ http://127.0.0.1:8000/redoc
 - Documentation
 - Final Portfolio
 
+### ✅ Completed
+
+- Project Planning
+- GitHub Setup
+- Documentation
+- FastAPI Setup
+- Backend Architecture
+- APIRouter
+- Configuration
+- Logging
+- API Versioning
+- Pydantic Schemas
+- Swagger Documentation
+
+### 🚧 Next
+
+- PostgreSQL
+- SQLAlchemy
+- CRUD Operations
+- Database Models
+
+### ⏳ Upcoming
+
+- MQTT
+- Digital Twin
+- Machine Learning
+- Grafana
+- Docker
+- CI/CD
 ---
 
 # Documentation
