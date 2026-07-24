@@ -333,7 +333,6 @@ Project documentation is maintained in **Obsidian** and includes:
 
 Bachelor of Engineering (Electronics & Communication Engineering)
 
-Aspiring Engineering Management Professional
 
 ---
 
