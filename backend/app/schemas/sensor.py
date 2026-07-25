@@ -1,7 +1,15 @@
 from pydantic import BaseModel
 
-class Sensor(BaseModel):
-    id: int
+
+class SensorCreate(BaseModel):
     type: str
     value: float
     unit: str
+
+
+class SensorResponse(SensorCreate):
+    id: int
+
+    model_config = {
+        "from_attributes": True
+    }

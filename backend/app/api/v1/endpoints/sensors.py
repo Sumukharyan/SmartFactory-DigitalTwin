@@ -1,23 +1,13 @@
-from fastapi import APIRouter
-from app.schemas.sensor import Sensor
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from app.database.dependencies import get_db
+from app.schemas.sensor import SensorResponse
+from app.services.sensor_service import get_all_sensors
 
 router = APIRouter()
 
-sensors = [
-    Sensor(
-        id=1,
-        type="Temperature",
-        value=28.5,
-        unit="°C"
-    ),
-    Sensor(
-        id=2,
-        type="Vibration",
-        value=1.6,
-        unit="mm/s"
-    )
-]
 
-@router.get("/sensors", response_model=list[Sensor])
-def get_sensors():
-    return sensors
+@router.get("/", response_model=list[SensorResponse])
+def read_sensors(db: Session = Depends(get_db)):
+    return get_all_sensors(db)

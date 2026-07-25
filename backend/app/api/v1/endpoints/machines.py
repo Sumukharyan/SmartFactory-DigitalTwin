@@ -1,23 +1,13 @@
-from fastapi import APIRouter
-from app.schemas.machine import Machine
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from app.database.dependencies import get_db
+from app.schemas.machine import MachineResponse
+from app.services.machine_service import get_all_machines
 
 router = APIRouter()
 
-machines = [
-    Machine(
-        id=1,
-        name="CNC Machine",
-        status="Running",
-        temperature=63.5
-    ),
-    Machine(
-        id=2,
-        name="Assembly Robot",
-        status="Idle",
-        temperature=39.1
-    )
-]
 
-@router.get("/machines", response_model=list[Machine])
-def get_machines():
-    return machines
+@router.get("/", response_model=list[MachineResponse])
+def read_machines(db: Session = Depends(get_db)):
+    return get_all_machines(db)
