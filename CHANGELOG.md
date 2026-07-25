@@ -1,16 +1,30 @@
 # Changelog
 
-## Version 0.1.0
 
 ### Added
 
-- Initial repository structure
-- Documentation folders
-- Project roadmap
-- README
-- Git configuration
-- Engineering documentation structure
+- Machine Create API
+- Machine Read by ID API
+- Machine Update API
+- Machine Delete API
 
-### Status
+- Sensor Create API
+- Sensor Read by ID API
+- Sensor Update API
+- Sensor Delete API
 
-Planning Phase Completed
+- HTTPException Handling
+- RESTful CRUD Operations
+- Swagger API Testing
+
+### Improved
+
+- Service Layer
+- SQLAlchemy Database Operations
+- API Response Validation
+
+### Fixed
+
+- API Routing
+- Error Responses
+- Database Update Logic
