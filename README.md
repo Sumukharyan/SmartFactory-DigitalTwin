@@ -83,4 +83,358 @@ This repository follows industry-standard backend architecture and software engi
 
 ---
 
-# 🛠
+# 🛠 Tech Stack
+
+## Backend
+
+- Python
+- FastAPI
+- Uvicorn
+
+## Database
+
+- PostgreSQL
+- SQLAlchemy
+- psycopg2-binary
+
+## Documentation
+
+- Markdown
+- Obsidian
+
+## Version Control
+
+- Git
+- GitHub
+
+## Development Tools
+
+- VS Code
+- pgAdmin
+
+---
+
+# 📂 Project Structure
+
+```
+smart-factory-digital-twin/
+│
+├── backend/
+│
+│   ├── app/
+│   │
+│   ├── api/
+│   │   └── v1/
+│   │       └── endpoints/
+│   │
+│   ├── core/
+│   │
+│   ├── database/
+│   │
+│   ├── models/
+│   │
+│   ├── schemas/
+│   │
+│   ├── services/
+│   │
+│   └── main.py
+│
+├── docs/
+│
+├── README.md
+│
+└── .gitignore
+```
+
+---
+
+# 🏗 Architecture
+
+```
+Client
+
+      │
+
+Swagger UI
+
+      │
+
+FastAPI Router
+
+      │
+
+Dependency Injection
+
+      │
+
+Service Layer
+
+      │
+
+SQLAlchemy ORM
+
+      │
+
+PostgreSQL
+```
+
+---
+
+# 🌐 Available APIs
+
+## Health
+
+| Method | Endpoint |
+|---------|----------|
+| GET | /api/v1/health |
+
+---
+
+## Machines
+
+| Method | Endpoint |
+|---------|----------|
+| GET | /api/v1/machines |
+| GET | /api/v1/machines/{id} |
+| POST | /api/v1/machines |
+| PUT | /api/v1/machines/{id} |
+| DELETE | /api/v1/machines/{id} |
+
+---
+
+## Sensors
+
+| Method | Endpoint |
+|---------|----------|
+| GET | /api/v1/sensors |
+| GET | /api/v1/sensors/{id} |
+| POST | /api/v1/sensors |
+| PUT | /api/v1/sensors/{id} |
+| DELETE | /api/v1/sensors/{id} |
+
+---
+
+# 🗄 Database
+
+Database Name
+
+```
+smart_factory
+```
+
+Tables
+
+```
+machines
+
+sensors
+```
+
+---
+
+# ⚙ Technologies Learned
+
+## FastAPI
+
+- APIRouter
+- Dependency Injection
+- Response Models
+- Path Parameters
+- HTTPException
+- Status Codes
+
+---
+
+## SQLAlchemy
+
+- ORM Models
+- Database Sessions
+- CRUD Operations
+- Query
+- Filter
+- Commit
+- Refresh
+- Delete
+
+---
+
+## PostgreSQL
+
+- Database Creation
+- Table Creation
+- Data Persistence
+- pgAdmin
+
+---
+
+# 📈 Current Progress
+
+| Module | Progress |
+|---------|---------:|
+| Planning | 100% |
+| Documentation | 100% |
+| Backend Development | 100% |
+| PostgreSQL | 100% |
+| SQLAlchemy | 100% |
+| REST APIs | 100% |
+| MQTT | 0% |
+| Digital Twin | 0% |
+| Dashboard | 0% |
+| Machine Learning | 0% |
+| Deployment | 0% |
+
+---
+
+# 🏆 Completed Milestones
+
+## Sprint 1
+
+- Project Planning
+- Repository Setup
+- FastAPI Installation
+- Project Structure
+- Configuration Module
+- Logging
+- PostgreSQL Integration
+- SQLAlchemy Setup
+- Database Models
+- Service Layer
+- Database Read APIs
+
+---
+
+## Sprint 2 (Current)
+
+- Machine CRUD
+- Sensor CRUD
+- RESTful API Design
+- Exception Handling
+- Swagger API Testing
+
+---
+
+# 📅 Roadmap
+
+## Phase 1 ✅
+
+Backend Foundation
+
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- CRUD APIs
+
+---
+
+## Phase 2 🚧
+
+Real-Time Communication
+
+- MQTT Broker
+- MQTT Publisher
+- MQTT Subscriber
+- Sensor Simulation
+- Machine Simulation
+
+---
+
+## Phase 3
+
+Dashboard
+
+- React
+- Charts
+- Live Factory Status
+- Analytics
+
+---
+
+## Phase 4
+
+Machine Learning
+
+- Predictive Maintenance
+- Failure Detection
+- Equipment Health Prediction
+
+---
+
+## Phase 5
+
+Deployment
+
+- Docker
+- Docker Compose
+- CI/CD
+- Cloud Deployment
+
+---
+
+# 📊 Overall Progress
+
+```
+Planning               ██████████ 100%
+
+Documentation          ██████████ 100%
+
+Backend                ██████████ 100%
+
+Database               ██████████ 100%
+
+REST APIs              ██████████ 100%
+
+MQTT                   ░░░░░░░░░░   0%
+
+Simulation             ░░░░░░░░░░   0%
+
+Dashboard              ░░░░░░░░░░   0%
+
+Machine Learning       ░░░░░░░░░░   0%
+
+Deployment             ░░░░░░░░░░   0%
+
+Overall Progress       ██████░░░░ 60%
+```
+
+---
+
+# 🎯 Learning Outcomes
+
+Through this project, I have gained practical experience in:
+
+- Backend API Development
+- RESTful API Design
+- FastAPI Framework
+- SQLAlchemy ORM
+- PostgreSQL Database Design
+- Layered Software Architecture
+- Dependency Injection
+- Error Handling
+- API Testing using Swagger
+- Git and GitHub Workflow
+
+---
+
+# 🚀 Next Steps
+
+The next milestone is to transform the backend into a **real-time Smart Factory** by integrating MQTT.
+
+Upcoming features include:
+
+- MQTT Broker
+- Sensor Data Streaming
+- Machine State Simulation
+- Live Dashboard
+- WebSocket Support
+- Predictive Maintenance
+- Docker Deployment
+
+---
+
+# 👨‍💻 Author
+
+**R Sumukh Aryan**
+
+Bachelor of Engineering (Electronics and Communication Engineering)
+
+Building Industry 4.0 projects using FastAPI, PostgreSQL, Embedded Systems, IoT, and Artificial Intelligence.
