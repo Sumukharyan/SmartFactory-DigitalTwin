@@ -30,26 +30,28 @@ This project is being developed as an **8-week portfolio project** following pro
 
 ---
 
-## Current Progress
+## 📈 Project Progress
 
-| Phase | Status |
-|--------|--------|
-| Planning & Documentation | ✅ Completed |
-| GitHub Repository Setup | ✅ Completed |
-| Backend Initialization | ✅ Completed |
-| FastAPI Setup | ✅ Completed |
-| Modular API Architecture | ✅ Completed |
+| Module | Status |
+|---------|--------|
+| Planning | ✅ Completed |
+| Documentation | ✅ Completed |
+| GitHub Setup | ✅ Completed |
+| FastAPI Backend | ✅ Completed |
+| Modular Routing | ✅ Completed |
 | API Versioning | ✅ Completed |
 | Pydantic Schemas | ✅ Completed |
-| Swagger Documentation | ✅ Completed |
-| Database Integration | 🚧 Next |
+| PostgreSQL Integration | ✅ Completed |
+| SQLAlchemy ORM | ✅ Completed |
+| Database Services | ✅ Completed |
+| CRUD (Read) | ✅ Completed |
+| CRUD (Create/Update/Delete) | 🚧 In Progress |
 | MQTT Integration | ⏳ Upcoming |
-| Machine Learning | ⏳ Upcoming |
 | Dashboard | ⏳ Upcoming |
+| Machine Learning | ⏳ Upcoming |
 | Deployment | ⏳ Upcoming |
 
-Overall Progress: **30%**
-
+**Overall Progress:** **50%**
 ---
 
 # Technology Stack
@@ -91,16 +93,18 @@ Overall Progress: **30%**
 ---
 ## Current Features
 
-- RESTful API built with FastAPI
-- Modular API routing using APIRouter
-- API versioning (`/api/v1`)
-- Environment-based configuration
-- Structured application logging
-- Pydantic request/response models
-- Interactive Swagger UI
-- Health monitoring endpoint
-- Machine API endpoint
-- Sensor API endpoint
+- FastAPI REST API
+- API Versioning
+- Modular Routers
+- Environment Variables
+- Logging
+- PostgreSQL Integration
+- SQLAlchemy ORM
+- Database Sessions
+- Service Layer
+- Machine API
+- Sensor API
+- Swagger Documentation
 
 ---
 # Current Project Structure
@@ -108,20 +112,29 @@ Overall Progress: **30%**
 ```text
 SmartFactory-DigitalTwin
 │
-├── backend
-│   ├── app
-│   │   ├── api
-│   │   ├── core
-│   │   ├── database
-│   │   ├── models
-│   │   ├── schemas
-│   │   ├── services
-│   │   ├── utils
-│   │   └── main.py
+backend
+│
+├── app
+│   ├── api
+│   ├── core
+│   ├── database
+│   │   ├── base.py
+│   │   ├── connection.py
+│   │   ├── dependencies.py
+│   │   └── session.py
 │   │
-│   ├── tests
-│   ├── requirements.txt
-│   └── README.md
+│   ├── models
+│   │   ├── machine.py
+│   │   └── sensor.py
+│   │
+│   ├── schemas
+│   ├── services
+│   └── main.py
+│
+├── create_tables.py
+├── test_connection.py
+└── requirements.txt
+└── README.md
 │
 ├── data
 ├── database
@@ -140,7 +153,44 @@ SmartFactory-DigitalTwin
 ├── PROJECT_ROADMAP.md
 └── LICENSE
 ```
+## 🗄 Database Architecture
 
+The application now uses PostgreSQL as its primary database and SQLAlchemy ORM for database interactions.
+
+### Database
+
+- PostgreSQL 18
+- SQLAlchemy ORM
+- psycopg2 Driver
+
+### Tables
+
+- machines
+- sensors
+
+### Backend Flow
+
+Client
+
+↓
+
+FastAPI Router
+
+↓
+
+Dependency Injection
+
+↓
+
+Service Layer
+
+↓
+
+SQLAlchemy ORM
+
+↓
+
+PostgreSQL Database
 ---
 
 ## API Endpoints
