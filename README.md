@@ -269,19 +269,27 @@ sensors
 
 # 📈 Current Progress
 
-| Module | Progress |
-|---------|---------:|
-| Planning | 100% |
-| Documentation | 100% |
-| Backend Development | 100% |
-| PostgreSQL | 100% |
-| SQLAlchemy | 100% |
-| REST APIs | 100% |
-| MQTT | 0% |
-| Digital Twin | 0% |
-| Dashboard | 0% |
-| Machine Learning | 0% |
-| Deployment | 0% |
+Planning               ██████████ 100%
+
+Documentation          ██████████ 100%
+
+Backend                ██████████ 100%
+
+Database               ██████████ 100%
+
+REST APIs              ██████████ 100%
+
+MQTT                   ███████░░░ 70%
+
+Simulation             ███░░░░░░░ 30%
+
+Dashboard              ░░░░░░░░░░ 0%
+
+Machine Learning       ░░░░░░░░░░ 0%
+
+Deployment             ░░░░░░░░░░ 0%
+
+Overall Project        ███████░░░ 70%
 
 ---
 
