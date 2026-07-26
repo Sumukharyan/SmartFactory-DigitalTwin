@@ -1,6 +1,6 @@
 # 🏭 Smart Factory Digital Twin
 
-> An Industry 4.0 Digital Twin platform built using FastAPI, PostgreSQL, SQLAlchemy, and MQTT (Upcoming) for real-time factory monitoring and predictive maintenance.
+A Smart Factory Digital Twin built using **FastAPI, PostgreSQL, SQLAlchemy, and MQTT** to simulate Industrial IoT communication. The project demonstrates how multiple machines and sensors communicate in real time, store data in a database, and expose REST APIs for future analytics and dashboard visualization.
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
@@ -8,192 +8,276 @@
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red)
 ![Status](https://img.shields.io/badge/Progress-Day%205-success)
 
----
-
-# 📖 Project Overview
-
-This project simulates a **Smart Factory Digital Twin** capable of monitoring industrial machines and sensors using modern backend technologies.
-
-The objective is to build a production-ready backend that will eventually support:
-
-- Real-time machine monitoring
-- Sensor data acquisition
-- MQTT communication
-- Predictive maintenance
-- Analytics dashboard
-- Machine Learning
-- Docker deployment
-
-This repository follows industry-standard backend architecture and software engineering practices.
 
 ---
 
-# 🚀 Current Features
+# 📌 Project Overview
 
-## Backend
+This project simulates an Industry 4.0 manufacturing environment where multiple factory machines continuously generate sensor data.
 
-- FastAPI
-- Modular Project Structure
-- API Versioning
-- Dependency Injection
-- Environment Configuration
-- Logging
-- Swagger Documentation
+The backend receives this data through MQTT, stores it in PostgreSQL, and exposes REST APIs using FastAPI.
 
----
+Current implementation includes:
 
-## Database
-
-- PostgreSQL
+- FastAPI Backend
+- PostgreSQL Database
 - SQLAlchemy ORM
-- Database Sessions
-- ORM Models
-- Service Layer
-- CRUD Operations
+- REST APIs
+- MQTT Communication
+- Multi-Sensor Simulation
+- Multi-Machine Simulation
+- Real-Time Database Updates
 
 ---
 
-## Machine APIs
+# 🚀 Technologies Used
 
-- ✅ Create Machine
-- ✅ Read All Machines
-- ✅ Read Machine by ID
-- ✅ Update Machine
-- ✅ Delete Machine
-
----
-
-## Sensor APIs
-
-- ✅ Create Sensor
-- ✅ Read All Sensors
-- ✅ Read Sensor by ID
-- ✅ Update Sensor
-- ✅ Delete Sensor
+| Category | Technology |
+|----------|------------|
+| Language | Python 3.13 |
+| Backend | FastAPI |
+| Database | PostgreSQL |
+| ORM | SQLAlchemy |
+| MQTT Broker | Mosquitto |
+| MQTT Client | Paho MQTT |
+| API Documentation | Swagger UI |
+| Version Control | Git & GitHub |
+| IDE | Visual Studio Code |
 
 ---
 
-## API Features
+# 🏗 Project Architecture
 
-- Response Models
-- Path Parameters
-- HTTP Status Codes
-- Exception Handling
-- Swagger Testing
+```
+                   Smart Factory
 
----
+     Temperature Sensor
+     Pressure Sensor
+     Humidity Sensor
+     Vibration Sensor
+     Machine Status
 
-# 🛠 Tech Stack
+             │
 
-## Backend
+             ▼
 
-- Python
-- FastAPI
-- Uvicorn
+        MQTT Publisher
 
-## Database
+             │
 
-- PostgreSQL
-- SQLAlchemy
-- psycopg2-binary
+             ▼
 
-## Documentation
+      Mosquitto Broker
 
-- Markdown
-- Obsidian
+             │
 
-## Version Control
+             ▼
 
-- Git
-- GitHub
+       MQTT Subscriber
 
-## Development Tools
+             │
 
-- VS Code
-- pgAdmin
+             ▼
+
+        Service Layer
+
+             │
+
+             ▼
+
+      SQLAlchemy ORM
+
+             │
+
+             ▼
+
+      PostgreSQL Database
+
+             │
+
+             ▼
+
+         FastAPI APIs
+
+             │
+
+             ▼
+
+      Swagger Documentation
+```
 
 ---
 
 # 📂 Project Structure
 
 ```
-smart-factory-digital-twin/
+backend/
+
+app/
+
+├── api/
+├── database/
+│   ├── base.py
+│   ├── session.py
+│   └── init_db.py
 │
-├── backend/
+├── models/
+│   ├── machine.py
+│   └── sensor.py
 │
-│   ├── app/
-│   │
-│   ├── api/
-│   │   └── v1/
-│   │       └── endpoints/
-│   │
-│   ├── core/
-│   │
-│   ├── database/
-│   │
-│   ├── models/
-│   │
-│   ├── schemas/
-│   │
-│   ├── services/
-│   │
-│   └── main.py
+├── schemas/
+│   ├── machine.py
+│   └── sensor.py
 │
-├── docs/
+├── routers/
+│   ├── machine.py
+│   └── sensor.py
 │
-├── README.md
+├── services/
+│   ├── machine_service.py
+│   └── mqtt_service.py
 │
-└── .gitignore
+├── mqtt/
+│   ├── publisher.py
+│   ├── subscriber.py
+│   └── topics.py
+│
+└── main.py
 ```
 
 ---
 
-# 🏗 Architecture
+# ⚙ Features Implemented
+
+## Backend
+
+- FastAPI project setup
+- Layered architecture
+- API routing
+- Dependency Injection
+- Swagger Documentation
+
+---
+
+## Database
+
+- PostgreSQL integration
+- SQLAlchemy ORM
+- Machine model
+- Sensor model
+- Database session management
+
+---
+
+## REST APIs
+
+### Machine APIs
+
+- Create Machine
+- Get All Machines
+- Get Machine by ID
+- Update Machine
+- Delete Machine
+
+### Sensor APIs
+
+- Create Sensor
+- Get All Sensors
+- Get Sensor by ID
+- Update Sensor
+- Delete Sensor
+
+---
+
+## MQTT Integration
+
+Implemented real-time communication using MQTT.
+
+### Publisher
+
+Publishes
+
+- Temperature
+- Pressure
+- Humidity
+- Vibration
+- Machine Status
+
+---
+
+### Subscriber
+
+Receives MQTT messages
+
+Stores sensor values in PostgreSQL
+
+Updates machine status automatically
+
+---
+
+# 🏭 Factory Simulation
+
+## Machines
+
+- CNC Machine
+- Robot Arm
+- Conveyor Belt
+
+---
+
+## Sensor Types
+
+- Temperature
+- Pressure
+- Humidity
+- Vibration
+
+---
+
+## Machine Status
+
+Random simulation of
+
+- Running
+- Idle
+- Maintenance
+- Fault
+
+---
+
+# 📡 MQTT Topics
 
 ```
-Client
+factory/temperature
 
-      │
+factory/pressure
 
-Swagger UI
+factory/vibration
 
-      │
+factory/humidity
 
-FastAPI Router
-
-      │
-
-Dependency Injection
-
-      │
-
-Service Layer
-
-      │
-
-SQLAlchemy ORM
-
-      │
-
-PostgreSQL
+factory/machine_status
 ```
 
 ---
 
-# 🌐 Available APIs
+# 📦 Sample MQTT Payload
 
-## Health
-
-| Method | Endpoint |
-|---------|----------|
-| GET | /api/v1/health |
+```json
+{
+    "machine": "Robot Arm",
+    "status": "Running"
+}
+```
 
 ---
+
+# 🌐 REST API Endpoints
 
 ## Machines
 
 | Method | Endpoint |
-|---------|----------|
+|----------|-----------|
 | GET | /api/v1/machines |
 | GET | /api/v1/machines/{id} |
 | POST | /api/v1/machines |
@@ -205,7 +289,7 @@ PostgreSQL
 ## Sensors
 
 | Method | Endpoint |
-|---------|----------|
+|----------|-----------|
 | GET | /api/v1/sensors |
 | GET | /api/v1/sensors/{id} |
 | POST | /api/v1/sensors |
@@ -214,235 +298,176 @@ PostgreSQL
 
 ---
 
-# 🗄 Database
-
-Database Name
+# 📈 Current Workflow
 
 ```
-smart_factory
+Factory Simulation
+
+        │
+
+        ▼
+
+MQTT Publisher
+
+        │
+
+        ▼
+
+Mosquitto Broker
+
+        │
+
+        ▼
+
+MQTT Subscriber
+
+        │
+
+        ▼
+
+Service Layer
+
+        │
+
+        ▼
+
+PostgreSQL
+
+        │
+
+        ▼
+
+FastAPI REST APIs
+
+        │
+
+        ▼
+
+Swagger UI
 ```
 
-Tables
-
-```
-machines
-
-sensors
-```
-
 ---
 
-# ⚙ Technologies Learned
+# 📊 Project Progress
 
-## FastAPI
-
-- APIRouter
-- Dependency Injection
-- Response Models
-- Path Parameters
-- HTTPException
-- Status Codes
-
----
-
-## SQLAlchemy
-
-- ORM Models
-- Database Sessions
-- CRUD Operations
-- Query
-- Filter
-- Commit
-- Refresh
-- Delete
-
----
-
-## PostgreSQL
-
-- Database Creation
-- Table Creation
-- Data Persistence
-- pgAdmin
-
----
-
-# 📈 Current Progress
-
-Planning               ██████████ 100%
-
-Documentation          ██████████ 100%
-
-Backend                ██████████ 100%
-
-Database               ██████████ 100%
-
-REST APIs              ██████████ 100%
-
-MQTT                   ███████░░░ 70%
-
-Simulation             ███░░░░░░░ 30%
-
-Dashboard              ░░░░░░░░░░ 0%
-
-Machine Learning       ░░░░░░░░░░ 0%
-
-Deployment             ░░░░░░░░░░ 0%
-
-Overall Project        ███████░░░ 70%
-
----
-
-# 🏆 Completed Milestones
-
-## Sprint 1
-
-- Project Planning
-- Repository Setup
-- FastAPI Installation
-- Project Structure
-- Configuration Module
-- Logging
-- PostgreSQL Integration
-- SQLAlchemy Setup
-- Database Models
-- Service Layer
-- Database Read APIs
-
----
-
-## Sprint 2 (Current)
-
-- Machine CRUD
-- Sensor CRUD
-- RESTful API Design
-- Exception Handling
-- Swagger API Testing
-
----
-
-# 📅 Roadmap
-
-## Phase 1 ✅
-
-Backend Foundation
-
-- FastAPI
-- PostgreSQL
-- SQLAlchemy
-- CRUD APIs
-
----
-
-## Phase 2 🚧
-
-Real-Time Communication
-
-- MQTT Broker
-- MQTT Publisher
-- MQTT Subscriber
-- Sensor Simulation
-- Machine Simulation
-
----
-
-## Phase 3
-
-Dashboard
-
-- React
-- Charts
-- Live Factory Status
-- Analytics
-
----
-
-## Phase 4
-
-Machine Learning
-
-- Predictive Maintenance
-- Failure Detection
-- Equipment Health Prediction
-
----
-
-## Phase 5
-
-Deployment
-
-- Docker
-- Docker Compose
-- CI/CD
-- Cloud Deployment
-
----
-
-# 📊 Overall Progress
-
-```
-Planning               ██████████ 100%
-
-Documentation          ██████████ 100%
-
-Backend                ██████████ 100%
-
-Database               ██████████ 100%
-
-REST APIs              ██████████ 100%
-
-MQTT                   ░░░░░░░░░░   0%
-
-Simulation             ░░░░░░░░░░   0%
-
-Dashboard              ░░░░░░░░░░   0%
-
-Machine Learning       ░░░░░░░░░░   0%
-
-Deployment             ░░░░░░░░░░   0%
-
-Overall Progress       ██████░░░░ 60%
-```
+| Module | Status |
+|----------|--------|
+| Project Setup | ✅ |
+| FastAPI Backend | ✅ |
+| PostgreSQL | ✅ |
+| SQLAlchemy | ✅ |
+| Models | ✅ |
+| CRUD APIs | ✅ |
+| Swagger | ✅ |
+| MQTT Publisher | ✅ |
+| MQTT Subscriber | ✅ |
+| Multi-Sensor Simulation | ✅ |
+| Multi-Machine Simulation | ✅ |
+| Database Integration | ✅ |
+| REST APIs | ✅ |
+| Analytics Layer | ⏳ |
+| Dashboard | ⏳ |
+| Docker | ⏳ |
+| Machine Learning | ⏳ |
 
 ---
 
 # 🎯 Learning Outcomes
 
-Through this project, I have gained practical experience in:
+This project demonstrates practical experience with
 
-- Backend API Development
-- RESTful API Design
-- FastAPI Framework
+- REST API Development
+- FastAPI
 - SQLAlchemy ORM
-- PostgreSQL Database Design
-- Layered Software Architecture
-- Dependency Injection
-- Error Handling
-- API Testing using Swagger
-- Git and GitHub Workflow
+- PostgreSQL
+- MQTT Protocol
+- Publish–Subscribe Architecture
+- Industrial IoT Communication
+- Layered Backend Architecture
+- Database Design
+- JSON Messaging
+- Real-Time Data Processing
 
 ---
 
-# 🚀 Next Steps
+# 🚀 Upcoming Development
 
-The next milestone is to transform the backend into a **real-time Smart Factory** by integrating MQTT.
+## Phase 2
 
-Upcoming features include:
+- Factory Analytics APIs
+- Machine Health Monitoring
+- Live Statistics
+- KPI Calculations
 
-- MQTT Broker
-- Sensor Data Streaming
-- Machine State Simulation
-- Live Dashboard
-- WebSocket Support
-- Predictive Maintenance
+---
+
+## Phase 3
+
+- React Dashboard
+- Live Charts
+- Factory Overview
+- Machine Cards
+- Sensor Visualization
+
+---
+
+## Phase 4
+
 - Docker Deployment
+- Authentication
+- Role-Based Access
+- Logging
+- Testing
 
 ---
 
-# 👨‍💻 Author
+## Phase 5
 
-**R Sumukh Aryan**
+- Machine Learning
+- Predictive Maintenance
+- Anomaly Detection
+- Equipment Failure Prediction
 
-Bachelor of Engineering (Electronics and Communication Engineering)
+---
 
-Building Industry 4.0 projects using FastAPI, PostgreSQL, Embedded Systems, IoT, and Artificial Intelligence.
+# 📅 Development Timeline
+
+| Day | Progress |
+|------|----------|
+| Day 1 | Project Setup & Architecture |
+| Day 2 | PostgreSQL Integration |
+| Day 3 | SQLAlchemy Models |
+| Day 4 | REST API Development |
+| Day 5 | CRUD Operations |
+| Day 6 | MQTT Integration |
+| Day 7 | Multi-Machine Factory Simulation |
+
+---
+
+# 📌 Current Status
+
+**Version:** v0.7.0
+
+**Completion:** Approximately **70%**
+
+Current capabilities include:
+
+- Real-time factory simulation
+- Multiple machines
+- Multiple sensors
+- MQTT communication
+- PostgreSQL integration
+- REST APIs
+- Swagger documentation
+
+The next milestone is building an analytics layer that summarizes live factory data and powers a dashboard for monitoring machine health and production status.
+
+---
+
+## 👨‍💻 Author
+
+**R. Sumukh Aryan**
+
+Electronics and Communication Engineering
+
+Smart Factory | Industrial IoT | Embedded Systems | FastAPI | PostgreSQL | MQTT
