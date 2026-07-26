@@ -169,23 +169,27 @@ app/
 
 ---
 
-## REST APIs
 
 ### Machine APIs
 
-- Create Machine
-- Get All Machines
-- Get Machine by ID
-- Update Machine
-- Delete Machine
+- GET /api/v1/machines
+- POST /api/v1/machines
+- PUT /api/v1/machines/{id}
+- DELETE /api/v1/machines/{id}
 
 ### Sensor APIs
 
-- Create Sensor
-- Get All Sensors
-- Get Sensor by ID
-- Update Sensor
-- Delete Sensor
+- GET /api/v1/sensors
+- POST /api/v1/sensors
+- PUT /api/v1/sensors/{id}
+- DELETE /api/v1/sensors/{id}
+
+### Analytics APIs
+
+- GET /api/v1/analytics/overview
+- GET /api/v1/analytics/sensor-summary
+- GET /api/v1/analytics/machine-health
+- GET /api/v1/analytics/live
 
 ---
 
@@ -370,28 +374,19 @@ The Smart Factory backend now includes a complete analytics engine that provides
 | GET /api/v1/analytics/live | Latest sensor values |
 ---
 
-# 📊 Project Progress
+## Progress
 
-| Module | Status |
-|----------|--------|
-| Project Setup | ✅ |
-| FastAPI Backend | ✅ |
-| PostgreSQL | ✅ |
-| SQLAlchemy | ✅ |
-| Models | ✅ |
-| CRUD APIs | ✅ |
-| Swagger | ✅ |
-| MQTT Publisher | ✅ |
-| MQTT Subscriber | ✅ |
-| Multi-Sensor Simulation | ✅ |
-| Multi-Machine Simulation | ✅ |
-| Database Integration | ✅ |
-| REST APIs | ✅ |
-| Analytics Layer | ⏳ |
-| Dashboard | ⏳ |
-| Docker | ⏳ |
-| Machine Learning | ⏳ |
-
+- ✅ FastAPI Backend
+- ✅ PostgreSQL
+- ✅ SQLAlchemy ORM
+- ✅ CRUD APIs
+- ✅ MQTT Publisher
+- ✅ MQTT Subscriber
+- ✅ Multi-machine Simulation
+- ✅ Analytics Module
+- ⏳ React Dashboard
+- ⏳ Grafana Integration
+- ⏳ Docker Deployment
 ---
 
 # 🎯 Learning Outcomes
