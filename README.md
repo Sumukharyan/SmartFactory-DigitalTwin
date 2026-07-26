@@ -6,7 +6,7 @@ A Smart Factory Digital Twin built using **FastAPI, PostgreSQL, SQLAlchemy, and 
 ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red)
-![Status](https://img.shields.io/badge/Progress-Day%205-success)
+
 
 
 ---
