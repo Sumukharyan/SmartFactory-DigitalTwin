@@ -345,7 +345,29 @@ FastAPI REST APIs
 
 Swagger UI
 ```
+## 📊 Analytics Module
 
+The Smart Factory backend now includes a complete analytics engine that provides real-time insights into factory operations.
+
+### Features
+
+- Factory Overview API
+- Sensor Statistics API
+- Machine Health Monitoring
+- Live Factory Status
+- Temperature Analytics
+- Pressure Analytics
+- Humidity Analytics
+- Vibration Analytics
+
+### Analytics Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| GET /api/v1/analytics/overview | Factory summary |
+| GET /api/v1/analytics/sensor-summary | Sensor statistics |
+| GET /api/v1/analytics/machine-health | Machine conditions |
+| GET /api/v1/analytics/live | Latest sensor values |
 ---
 
 # 📊 Project Progress
