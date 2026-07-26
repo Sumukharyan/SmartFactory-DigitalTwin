@@ -1,22 +1,33 @@
 from fastapi import FastAPI
 
-from app.api.router import router
-from app.core.config import settings
-from app.core.logging import logger
+from app.database.init_db import init_db
+
+from app.routers.machine import router as machine_router
+from app.routers.sensor import router as sensor_router
+from app.routers.analytics import router as analytics_router
+
+
+# Create all database tables
+init_db()
+
 
 app = FastAPI(
-    title=settings.APP_NAME,
-    version=settings.VERSION
+    title="Smart Factory Digital Twin API",
+    description="Industry 4.0 Smart Factory Backend using FastAPI, PostgreSQL, SQLAlchemy and MQTT",
+    version="0.8.0",
 )
 
-@app.on_event("startup")
-def startup():
-    logger.info("Application Started")
-
-app.include_router(router)
 
 @app.get("/")
 def root():
     return {
-        "message": "Welcome to Smart Factory Digital Twin API"
+        "message": "Welcome to Smart Factory Digital Twin API",
+        "version": "0.8.0",
+        "status": "Running",
     }
+
+
+# Register Routers
+app.include_router(machine_router)
+app.include_router(sensor_router)
+app.include_router(analytics_router)
