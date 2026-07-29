@@ -15,7 +15,7 @@ The project provides live machine monitoring, predictive health analysis, histor
 
 ## 📸 Dashboard Preview
 
-> Add screenshots here after deployment.
+
 
 ```
 Dashboard
@@ -497,6 +497,12 @@ npm install papaparse
 - ✅ Toast Notifications
 - ✅ CSV Export
 - ✅ PDF Export
+- ✅ Factory Dashboard
+- ✅ MQTT Integration
+- ✅ PostgreSQL Database
+- ✅ Real-time Analytics
+- ✅ Historical Trends
+- ✅ Predictive Maintenance
 
 ---
 
