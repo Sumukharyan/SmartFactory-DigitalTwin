@@ -1,8 +1,39 @@
-from sqlalchemy import func
+from sqlalchemy import func, desc
 from sqlalchemy.orm import Session
 
 from app.models.machine import Machine
 from app.models.sensor import Sensor
+from app.models.sensor_history import SensorHistory
+
+
+# ==================================================
+# Health Score Calculator
+# ==================================================
+
+def calculate_health(sensor, status):
+
+    score = 100
+
+    score -= max(0, sensor.temperature - 30) * 1.5
+
+    score -= abs(sensor.pressure - 100) * 0.7
+
+    score -= max(0, sensor.humidity - 60) * 0.4
+
+    score -= sensor.vibration * 4
+
+    if status == "Idle":
+        score -= 5
+
+    elif status == "Maintenance":
+        score -= 20
+
+    elif status == "Fault":
+        score -= 40
+
+    score = max(0, min(100, round(score)))
+
+    return score
 
 
 # ==================================================
@@ -37,14 +68,22 @@ def get_factory_overview(db: Session):
         .count()
     )
 
-    avg_temp = (
-        db.query(func.avg(Sensor.value))
-        .filter(Sensor.type == "Temperature")
-        .scalar()
-    )
+    avg_temp = db.query(func.avg(Sensor.temperature)).scalar() or 0
 
-    if avg_temp is None:
-        avg_temp = 0
+    sensors = db.query(Sensor).all()
+
+    scores = []
+
+    for sensor in sensors:
+        scores.append(
+            calculate_health(sensor, sensor.status)
+        )
+
+    avg_health = (
+        round(sum(scores) / len(scores), 1)
+        if scores
+        else 0
+    )
 
     return {
         "total_machines": total,
@@ -53,6 +92,7 @@ def get_factory_overview(db: Session):
         "maintenance": maintenance,
         "fault": fault,
         "average_temperature": round(avg_temp, 2),
+        "average_health": avg_health,
     }
 
 
@@ -62,42 +102,44 @@ def get_factory_overview(db: Session):
 
 def get_sensor_summary(db: Session):
 
-    sensor_types = [
-        "Temperature",
-        "Pressure",
-        "Humidity",
-        "Vibration",
-    ]
+    avg_temp = db.query(func.avg(Sensor.temperature)).scalar() or 0
+    min_temp = db.query(func.min(Sensor.temperature)).scalar() or 0
+    max_temp = db.query(func.max(Sensor.temperature)).scalar() or 0
 
-    summary = {}
+    avg_pressure = db.query(func.avg(Sensor.pressure)).scalar() or 0
+    min_pressure = db.query(func.min(Sensor.pressure)).scalar() or 0
+    max_pressure = db.query(func.max(Sensor.pressure)).scalar() or 0
 
-    for sensor in sensor_types:
+    avg_humidity = db.query(func.avg(Sensor.humidity)).scalar() or 0
+    min_humidity = db.query(func.min(Sensor.humidity)).scalar() or 0
+    max_humidity = db.query(func.max(Sensor.humidity)).scalar() or 0
 
-        average = (
-            db.query(func.avg(Sensor.value))
-            .filter(Sensor.type == sensor)
-            .scalar()
-        )
+    avg_vibration = db.query(func.avg(Sensor.vibration)).scalar() or 0
+    min_vibration = db.query(func.min(Sensor.vibration)).scalar() or 0
+    max_vibration = db.query(func.max(Sensor.vibration)).scalar() or 0
 
-        minimum = (
-            db.query(func.min(Sensor.value))
-            .filter(Sensor.type == sensor)
-            .scalar()
-        )
-
-        maximum = (
-            db.query(func.max(Sensor.value))
-            .filter(Sensor.type == sensor)
-            .scalar()
-        )
-
-        summary[sensor.lower()] = {
-            "average": round(average or 0, 2),
-            "minimum": round(minimum or 0, 2),
-            "maximum": round(maximum or 0, 2),
-        }
-
-    return summary
+    return {
+        "temperature": {
+            "average": round(avg_temp, 2),
+            "minimum": round(min_temp, 2),
+            "maximum": round(max_temp, 2),
+        },
+        "pressure": {
+            "average": round(avg_pressure, 2),
+            "minimum": round(min_pressure, 2),
+            "maximum": round(max_pressure, 2),
+        },
+        "humidity": {
+            "average": round(avg_humidity, 2),
+            "minimum": round(min_humidity, 2),
+            "maximum": round(max_humidity, 2),
+        },
+        "vibration": {
+            "average": round(avg_vibration, 2),
+            "minimum": round(min_vibration, 2),
+            "maximum": round(max_vibration, 2),
+        },
+    }
 
 
 # ==================================================
@@ -112,15 +154,23 @@ def get_machine_health(db: Session):
 
     for machine in machines:
 
-        if machine.status == "Running":
+        sensor = (
+            db.query(Sensor)
+            .filter(Sensor.machine_name == machine.name)
+            .first()
+        )
+
+        if not sensor:
+            continue
+
+        health_score = calculate_health(sensor, machine.status)
+
+        if health_score >= 95:
+            condition = "Excellent"
+        elif health_score >= 80:
             condition = "Healthy"
-
-        elif machine.status == "Idle":
-            condition = "Standby"
-
-        elif machine.status == "Maintenance":
-            condition = "Needs Maintenance"
-
+        elif health_score >= 60:
+            condition = "Warning"
         else:
             condition = "Critical"
 
@@ -130,6 +180,14 @@ def get_machine_health(db: Session):
                 "name": machine.name,
                 "status": machine.status,
                 "condition": condition,
+                "health_score": health_score,
+                "temperature": sensor.temperature,
+                "pressure": sensor.pressure,
+                "humidity": sensor.humidity,
+                "vibration": sensor.vibration,
+                "updated_at": sensor.updated_at.strftime("%H:%M:%S")
+                if sensor.updated_at
+                else "--",
             }
         )
 
@@ -142,37 +200,89 @@ def get_machine_health(db: Session):
 
 def get_live_factory_status(db: Session):
 
-    latest_temperature = (
+    latest = (
         db.query(Sensor)
-        .filter(Sensor.type == "Temperature")
-        .order_by(Sensor.id.desc())
+        .order_by(Sensor.updated_at.desc())
         .first()
     )
 
-    latest_pressure = (
-        db.query(Sensor)
-        .filter(Sensor.type == "Pressure")
-        .order_by(Sensor.id.desc())
-        .first()
-    )
-
-    latest_humidity = (
-        db.query(Sensor)
-        .filter(Sensor.type == "Humidity")
-        .order_by(Sensor.id.desc())
-        .first()
-    )
-
-    latest_vibration = (
-        db.query(Sensor)
-        .filter(Sensor.type == "Vibration")
-        .order_by(Sensor.id.desc())
-        .first()
-    )
+    if not latest:
+        return {
+            "temperature": 0,
+            "pressure": 0,
+            "humidity": 0,
+            "vibration": 0,
+        }
 
     return {
-        "temperature": latest_temperature.value if latest_temperature else None,
-        "pressure": latest_pressure.value if latest_pressure else None,
-        "humidity": latest_humidity.value if latest_humidity else None,
-        "vibration": latest_vibration.value if latest_vibration else None,
+        "temperature": latest.temperature,
+        "pressure": latest.pressure,
+        "humidity": latest.humidity,
+        "vibration": latest.vibration,
     }
+
+
+# ==================================================
+# Sensor History
+# ==================================================
+
+def get_sensor_history(db: Session, limit: int = 30):
+
+    history = (
+        db.query(SensorHistory)
+        .order_by(desc(SensorHistory.created_at))
+        .limit(limit)
+        .all()
+    )
+
+    history.reverse()
+
+    return [
+        {
+            "time": row.created_at.strftime("%H:%M:%S"),
+            "machine": row.machine_name,
+            "temperature": row.temperature,
+            "pressure": row.pressure,
+            "humidity": row.humidity,
+            "vibration": row.vibration,
+            "status": row.status,
+        }
+        for row in history
+    ]
+
+
+# ==================================================
+# Machine History
+# ==================================================
+
+def get_machine_history(
+    db: Session,
+    machine_name: str,
+    limit: int = 20,
+):
+
+    history = (
+        db.query(SensorHistory)
+        .filter(
+            SensorHistory.machine_name == machine_name
+        )
+        .order_by(
+            SensorHistory.created_at.desc()
+        )
+        .limit(limit)
+        .all()
+    )
+
+    history.reverse()
+
+    return [
+        {
+            "time": row.created_at.strftime("%H:%M:%S"),
+            "temperature": row.temperature,
+            "pressure": row.pressure,
+            "humidity": row.humidity,
+            "vibration": row.vibration,
+            "status": row.status,
+        }
+        for row in history
+    ]

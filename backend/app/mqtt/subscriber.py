@@ -7,13 +7,8 @@ from app.database.session import SessionLocal
 from app.services.machine_service import update_machine_status
 from app.services.mqtt_service import save_sensor
 
-from app.mqtt.topics import (
-    TEMPERATURE_TOPIC,
-    PRESSURE_TOPIC,
-    VIBRATION_TOPIC,
-    HUMIDITY_TOPIC,
-    MACHINE_STATUS_TOPIC,
-)
+from app.mqtt.topics import FACTORY_TOPIC
+
 
 BROKER = "localhost"
 PORT = 1883
@@ -23,87 +18,42 @@ def on_connect(client, userdata, flags, reason_code, properties=None):
 
     print("Connected to MQTT Broker")
 
-    client.subscribe(TEMPERATURE_TOPIC)
-    client.subscribe(PRESSURE_TOPIC)
-    client.subscribe(VIBRATION_TOPIC)
-    client.subscribe(HUMIDITY_TOPIC)
-    client.subscribe(MACHINE_STATUS_TOPIC)
+    client.subscribe(FACTORY_TOPIC)
 
-    print("Subscribed to all factory topics")
+    print("Subscribed to factory/data")
 
 
 def on_message(client, userdata, msg):
-
-    topic = msg.topic
-
-    payload = msg.payload.decode()
 
     db = SessionLocal()
 
     try:
 
-        if topic == TEMPERATURE_TOPIC:
+        sensor_data = json.loads(msg.payload.decode())
 
-            save_sensor(
-                db,
-                "Temperature",
-                float(payload),
-                "°C"
-            )
+        update_machine_status(
+            db,
+            sensor_data["machine"],
+            sensor_data["status"]
+        )
 
-            print(f"🌡 Temperature : {payload} °C")
+        save_sensor(
+            db,
+            sensor_data
+        )
 
-        elif topic == PRESSURE_TOPIC:
+        print("=" * 60)
 
-            save_sensor(
-                db,
-                "Pressure",
-                float(payload),
-                "kPa"
-            )
-
-            print(f"📈 Pressure : {payload} kPa")
-
-        elif topic == VIBRATION_TOPIC:
-
-            save_sensor(
-                db,
-                "Vibration",
-                float(payload),
-                "mm/s"
-            )
-
-            print(f"📳 Vibration : {payload} mm/s")
-
-        elif topic == HUMIDITY_TOPIC:
-
-            save_sensor(
-                db,
-                "Humidity",
-                float(payload),
-                "%"
-            )
-
-            print(f"💧 Humidity : {payload} %")
-
-        elif topic == MACHINE_STATUS_TOPIC:
-
-            machine_data = json.loads(payload)
-
-            update_machine_status(
-                db,
-                machine_data["machine"],
-                machine_data["status"]
-            )
-
-            print()
-            print("⚙ Machine Update")
-            print(f"Machine : {machine_data['machine']}")
-            print(f"Status  : {machine_data['status']}")
+        print(f"Machine      : {sensor_data['machine']}")
+        print(f"Temperature  : {sensor_data['temperature']} °C")
+        print(f"Pressure     : {sensor_data['pressure']} kPa")
+        print(f"Humidity     : {sensor_data['humidity']} %")
+        print(f"Vibration    : {sensor_data['vibration']} mm/s")
+        print(f"Status       : {sensor_data['status']}")
 
     except Exception as e:
 
-        print(f"Error: {e}")
+        print(f"Error : {e}")
 
     finally:
 
