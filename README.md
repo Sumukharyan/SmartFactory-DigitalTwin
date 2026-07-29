@@ -186,6 +186,27 @@ Dashboard updates every
 using FastAPI APIs.
 
 ---
+## 📊 Analytics Dashboard
+
+The analytics module provides real-time insights into factory operations.
+
+### Features
+
+- Live KPI Dashboard
+- Machine-wise Analytics
+- Temperature Trend Analysis
+- Pressure Monitoring
+- Humidity Monitoring
+- Vibration Trend Analysis
+- Machine Health Score
+- Factory Health Overview
+- Predictive Maintenance
+- Remaining Useful Life (RUL)
+- Failure Probability Estimation
+- AI Maintenance Recommendation
+- Real-time Auto Refresh
+
+---
 
 # 🏗 System Architecture
 
@@ -491,6 +512,17 @@ npm install papaparse
 - Predictive Maintenance Dashboard
 
 ---
+
+## Dashboard
+
+### Analytics Dashboard
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/af00f3d5-6d90-4ce8-aaae-35d66053b5a1" />
+
+### Predictive Maintenance
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ff3968a6-e5b8-4d04-a0ae-00c27e21cdff" />
+
+
 
 # 👨‍💻 Author
 
