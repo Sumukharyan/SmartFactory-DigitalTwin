@@ -52,3 +52,6 @@ def machine_history(
 def history(db: Session = Depends(get_db)):
     return get_sensor_history(db)
 
+@router.get("/machine/{machine_name}")
+def machine_history(machine_name: str):
+    return analytics.get_machine_history(machine_name)
