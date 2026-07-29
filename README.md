@@ -8,7 +8,7 @@ The project provides live machine monitoring, predictive health analysis, histor
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-blue)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red)
 
 ---
