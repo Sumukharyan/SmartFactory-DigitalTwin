@@ -39,7 +39,7 @@ def live_status(db: Session = Depends(get_db)):
 
 
 @router.get("/history/{machine_name}")
-def machine_history(
+def get_machine_history_route(
     machine_name: str,
     db: Session = Depends(get_db)
 ):
@@ -53,5 +53,11 @@ def history(db: Session = Depends(get_db)):
     return get_sensor_history(db)
 
 @router.get("/machine/{machine_name}")
-def machine_history(machine_name: str):
-    return analytics.get_machine_history(machine_name)
+def machine_history_api(
+    machine_name: str,
+    db: Session = Depends(get_db)
+):
+    return get_machine_history(
+        db,
+        machine_name
+    )
