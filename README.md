@@ -1,246 +1,121 @@
+
 # 🏭 Smart Factory Digital Twin
 
-A Smart Factory Digital Twin built using **FastAPI, PostgreSQL, SQLAlchemy, and MQTT** to simulate Industrial IoT communication. The project demonstrates how multiple machines and sensors communicate in real time, store data in a database, and expose REST APIs for future analytics and dashboard visualization.
+A full-stack Industrial IoT (IIoT) monitoring platform that simulates a real-time smart factory using **React**, **FastAPI**, **PostgreSQL**, and **MQTT**.
+
+The project provides live machine monitoring, predictive health analysis, historical sensor visualization, alert management, and professional report generation.
+
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red)
 
-
-
 ---
 
-# 📌 Project Overview
+## 📸 Dashboard Preview
 
-This project simulates an Industry 4.0 manufacturing environment where multiple factory machines continuously generate sensor data.
-
-The backend receives this data through MQTT, stores it in PostgreSQL, and exposes REST APIs using FastAPI.
-
-Current implementation includes:
-
-- FastAPI Backend
-- PostgreSQL Database
-- SQLAlchemy ORM
-- REST APIs
-- MQTT Communication
-- Multi-Sensor Simulation
-- Multi-Machine Simulation
-- Real-Time Database Updates
-
----
-
-# 🚀 Technologies Used
-
-| Category | Technology |
-|----------|------------|
-| Language | Python 3.13 |
-| Backend | FastAPI |
-| Database | PostgreSQL |
-| ORM | SQLAlchemy |
-| MQTT Broker | Mosquitto |
-| MQTT Client | Paho MQTT |
-| API Documentation | Swagger UI |
-| Version Control | Git & GitHub |
-| IDE | Visual Studio Code |
-
----
-
-# 🏗 Project Architecture
+> Add screenshots here after deployment.
 
 ```
-                   Smart Factory
+Dashboard
 
-     Temperature Sensor
-     Pressure Sensor
-     Humidity Sensor
-     Vibration Sensor
-     Machine Status
-
-             │
-
-             ▼
-
-        MQTT Publisher
-
-             │
-
-             ▼
-
-      Mosquitto Broker
-
-             │
-
-             ▼
-
-       MQTT Subscriber
-
-             │
-
-             ▼
-
-        Service Layer
-
-             │
-
-             ▼
-
-      SQLAlchemy ORM
-
-             │
-
-             ▼
-
-      PostgreSQL Database
-
-             │
-
-             ▼
-
-         FastAPI APIs
-
-             │
-
-             ▼
-
-      Swagger Documentation
+✔ Factory Overview
+✔ Live Sensor Monitoring
+✔ Factory Floor
+✔ Machine Details
+✔ Analytics Charts
+✔ Activity Feed
+✔ Alerts
+✔ CSV Export
+✔ PDF Export
 ```
 
 ---
 
-# 📂 Project Structure
+# 🚀 Features
 
-```
-backend/
+## 🏭 Factory Monitoring
 
-app/
-
-├── api/
-├── database/
-│   ├── base.py
-│   ├── session.py
-│   └── init_db.py
-│
-├── models/
-│   ├── machine.py
-│   └── sensor.py
-│
-├── schemas/
-│   ├── machine.py
-│   └── sensor.py
-│
-├── routers/
-│   ├── machine.py
-│   └── sensor.py
-│
-├── services/
-│   ├── machine_service.py
-│   └── mqtt_service.py
-│
-├── mqtt/
-│   ├── publisher.py
-│   ├── subscriber.py
-│   └── topics.py
-│
-└── main.py
-```
+- Live industrial dashboard
+- Real-time MQTT sensor updates
+- Factory overview cards
+- Factory floor visualization
+- Machine status monitoring
+- Automatic dashboard refresh (5 seconds)
 
 ---
 
-# ⚙ Features Implemented
+## 📊 Sensor Monitoring
 
-## Backend
+Monitor live values of
 
-- FastAPI project setup
-- Layered architecture
-- API routing
-- Dependency Injection
-- Swagger Documentation
-
----
-
-## Database
-
-- PostgreSQL integration
-- SQLAlchemy ORM
-- Machine model
-- Sensor model
-- Database session management
+- 🌡 Temperature
+- ⚙ Pressure
+- 💧 Humidity
+- 📳 Vibration
 
 ---
 
+## ❤️ Machine Health Analytics
 
-### Machine APIs
-
-- GET /api/v1/machines
-- POST /api/v1/machines
-- PUT /api/v1/machines/{id}
-- DELETE /api/v1/machines/{id}
-
-### Sensor APIs
-
-- GET /api/v1/sensors
-- POST /api/v1/sensors
-- PUT /api/v1/sensors/{id}
-- DELETE /api/v1/sensors/{id}
-
-### Analytics APIs
-
-- GET /api/v1/analytics/overview
-- GET /api/v1/analytics/sensor-summary
-- GET /api/v1/analytics/machine-health
-- GET /api/v1/analytics/live
-
----
-
-## MQTT Integration
-
-Implemented real-time communication using MQTT.
-
-### Publisher
-
-Publishes
+Each machine receives a dynamic health score based on
 
 - Temperature
 - Pressure
 - Humidity
 - Vibration
+- Operating Status
+
+Health Levels
+
+| Score | Condition |
+|--------|-----------|
+| 95-100 | Excellent |
+| 80-94 | Healthy |
+| 60-79 | Warning |
+| 0-59 | Critical |
+
+---
+
+## 🚨 Smart Alert System
+
+Automatically detects
+
+- High Temperature
+- High Vibration
+- Low Pressure
+- High Pressure
+- Machine Fault
+- Maintenance Required
+
+Features
+
+- Live Alerts Panel
+- Toast Notifications
+- Critical Fault Highlighting
+
+---
+
+## 🏭 Factory Floor
+
+Interactive machine cards displaying
+
+- Machine Name
 - Machine Status
+- Health Score
+- Health Progress Bar
+- Sensor Values
+- Condition
+- Last Updated
 
 ---
 
-### Subscriber
+## 🔍 Machine Search & Filter
 
-Receives MQTT messages
+Search machines by name
 
-Stores sensor values in PostgreSQL
-
-Updates machine status automatically
-
----
-
-# 🏭 Factory Simulation
-
-## Machines
-
-- CNC Machine
-- Robot Arm
-- Conveyor Belt
-
----
-
-## Sensor Types
-
-- Temperature
-- Pressure
-- Humidity
-- Vibration
-
----
-
-## Machine Status
-
-Random simulation of
+Filter machines by
 
 - Running
 - Idle
@@ -249,242 +124,384 @@ Random simulation of
 
 ---
 
-# 📡 MQTT Topics
+## 📈 Historical Analytics
+
+Real-time charts
+
+- Temperature
+- Pressure
+- Humidity
+- Vibration
+
+Historical sensor visualization using Chart.js.
+
+---
+
+## 📋 Machine Details Panel
+
+Click any machine to view
+
+- Complete Sensor Values
+- Machine Health
+- Condition
+- Trend Chart
+- Alert Summary
+- Recent Events
+- Last Updated Time
+
+---
+
+## 📑 Report Generation
+
+Generate professional reports.
+
+### Export CSV
+
+Downloads
+
+- Machine Status
+- Sensor Values
+- Health
+- Condition
+
+### Export PDF
+
+Professional report including
+
+- Factory Summary
+- Machine Table
+- Health Status
+- Report Timestamp
+
+---
+
+## ⚡ Live Dashboard
+
+Dashboard updates every
 
 ```
-factory/temperature
+5 Seconds
+```
 
-factory/pressure
+using FastAPI APIs.
 
-factory/vibration
+---
 
-factory/humidity
+# 🏗 System Architecture
 
-factory/machine_status
+```
+                    MQTT Simulator
+                           │
+                           ▼
+                  MQTT Subscriber
+                     (FastAPI)
+
+                           │
+                           ▼
+                  Analytics Engine
+
+                           │
+                           ▼
+                    PostgreSQL
+
+                           │
+                           ▼
+                    REST APIs
+
+                           │
+                           ▼
+                  React Dashboard
 ```
 
 ---
 
-# 📦 Sample MQTT Payload
+# 🛠 Tech Stack
 
-```json
-{
-    "machine": "Robot Arm",
-    "status": "Running"
-}
-```
+## Frontend
 
----
-
-# 🌐 REST API Endpoints
-
-## Machines
-
-| Method | Endpoint |
-|----------|-----------|
-| GET | /api/v1/machines |
-| GET | /api/v1/machines/{id} |
-| POST | /api/v1/machines |
-| PUT | /api/v1/machines/{id} |
-| DELETE | /api/v1/machines/{id} |
+- React
+- Axios
+- Chart.js
+- React Toastify
+- jsPDF
+- jsPDF AutoTable
+- PapaParse
 
 ---
 
-## Sensors
+## Backend
 
-| Method | Endpoint |
-|----------|-----------|
-| GET | /api/v1/sensors |
-| GET | /api/v1/sensors/{id} |
-| POST | /api/v1/sensors |
-| PUT | /api/v1/sensors/{id} |
-| DELETE | /api/v1/sensors/{id} |
-
----
-
-# 📈 Current Workflow
-
-```
-Factory Simulation
-
-        │
-
-        ▼
-
-MQTT Publisher
-
-        │
-
-        ▼
-
-Mosquitto Broker
-
-        │
-
-        ▼
-
-MQTT Subscriber
-
-        │
-
-        ▼
-
-Service Layer
-
-        │
-
-        ▼
-
-PostgreSQL
-
-        │
-
-        ▼
-
-FastAPI REST APIs
-
-        │
-
-        ▼
-
-Swagger UI
-```
-## 📊 Analytics Module
-
-The Smart Factory backend now includes a complete analytics engine that provides real-time insights into factory operations.
-
-### Features
-
-- Factory Overview API
-- Sensor Statistics API
-- Machine Health Monitoring
-- Live Factory Status
-- Temperature Analytics
-- Pressure Analytics
-- Humidity Analytics
-- Vibration Analytics
-
-### Analytics Endpoints
-
-| Endpoint | Description |
-|----------|-------------|
-| GET /api/v1/analytics/overview | Factory summary |
-| GET /api/v1/analytics/sensor-summary | Sensor statistics |
-| GET /api/v1/analytics/machine-health | Machine conditions |
-| GET /api/v1/analytics/live | Latest sensor values |
----
-
-## Progress
-
-- ✅ FastAPI Backend
-- ✅ PostgreSQL
-- ✅ SQLAlchemy ORM
-- ✅ CRUD APIs
-- ✅ MQTT Publisher
-- ✅ MQTT Subscriber
-- ✅ Multi-machine Simulation
-- ✅ Analytics Module
-- ⏳ React Dashboard
-- ⏳ Grafana Integration
-- ⏳ Docker Deployment
----
-
-# 🎯 Learning Outcomes
-
-This project demonstrates practical experience with
-
-- REST API Development
 - FastAPI
-- SQLAlchemy ORM
+- SQLAlchemy
+- Pydantic
+- MQTT
+- Uvicorn
+
+---
+
+## Database
+
 - PostgreSQL
-- MQTT Protocol
-- Publish–Subscribe Architecture
-- Industrial IoT Communication
-- Layered Backend Architecture
-- Database Design
-- JSON Messaging
-- Real-Time Data Processing
 
 ---
 
-# 🚀 Upcoming Development
+## Communication
 
-## Phase 2
-
-- Factory Analytics APIs
-- Machine Health Monitoring
-- Live Statistics
-- KPI Calculations
+- MQTT
 
 ---
 
-## Phase 3
+# 📂 Project Structure
 
-- React Dashboard
-- Live Charts
-- Factory Overview
-- Machine Cards
-- Sensor Visualization
+```
+Smart-Factory-Digital-Twin/
 
----
-
-## Phase 4
-
-- Docker Deployment
-- Authentication
-- Role-Based Access
-- Logging
-- Testing
-
----
-
-## Phase 5
-
-- Machine Learning
-- Predictive Maintenance
-- Anomaly Detection
-- Equipment Failure Prediction
-
----
-
-# 📅 Development Timeline
-
-| Day | Progress |
-|------|----------|
-| Day 1 | Project Setup & Architecture |
-| Day 2 | PostgreSQL Integration |
-| Day 3 | SQLAlchemy Models |
-| Day 4 | REST API Development |
-| Day 5 | CRUD Operations |
-| Day 6 | MQTT Integration |
-| Day 7 | Multi-Machine Factory Simulation |
-
----
-
-# 📌 Current Status
-
-**Version:** v0.7.0
-
-**Completion:** Approximately **70%**
-
-Current capabilities include:
-
-- Real-time factory simulation
-- Multiple machines
-- Multiple sensors
-- MQTT communication
-- PostgreSQL integration
-- REST APIs
-- Swagger documentation
-
-The next milestone is building an analytics layer that summarizes live factory data and powers a dashboard for monitoring machine health and production status.
+│
+├── backend/
+│
+│   ├── analytics/
+│   ├── database/
+│   ├── models/
+│   ├── mqtt/
+│   ├── routes/
+│   ├── services/
+│   └── main.py
+│
+├── frontend/
+│
+│   ├── components/
+│   │
+│   ├── Header
+│   ├── OverviewCards
+│   ├── SensorCards
+│   ├── AlertsPanel
+│   ├── FactoryFloor
+│   ├── MachineDetails
+│   ├── MachineTable
+│   ├── ActivityFeed
+│   ├── TemperatureChart
+│   ├── PressureChart
+│   ├── HumidityChart
+│   ├── VibrationChart
+│   ├── ExportCSV
+│   ├── ExportPDF
+│   └── ReportSummary
+│
+│
+├── README.md
+│
+└── package.json
+```
 
 ---
 
-## 👨‍💻 Author
+# 📡 API Endpoints
 
-**R. Sumukh Aryan**
+## Analytics
 
-Electronics and Communication Engineering
+```
+GET /analytics/overview
+```
 
-Smart Factory | Industrial IoT | Embedded Systems | FastAPI | PostgreSQL | MQTT
+Returns
+
+- Total Machines
+- Running
+- Idle
+- Maintenance
+- Fault
+- Average Temperature
+- Average Health
+
+---
+
+```
+GET /analytics/live
+```
+
+Returns
+
+Current factory sensor values.
+
+---
+
+```
+GET /analytics/machine-health
+```
+
+Returns
+
+- Machine Health
+- Condition
+- Sensor Data
+
+---
+
+```
+GET /analytics/history
+```
+
+Returns historical sensor readings.
+
+---
+
+## Alerts
+
+```
+GET /alerts/
+```
+
+Returns active alerts.
+
+---
+
+# 🧠 Health Calculation
+
+Machine health is calculated dynamically using
+
+- Temperature
+- Pressure
+- Humidity
+- Vibration
+- Current Machine Status
+
+The score is normalized between
+
+```
+0 – 100
+```
+
+---
+
+# 📊 Dashboard Components
+
+- Header
+- Overview Cards
+- Sensor Cards
+- Alerts Panel
+- Search Bar
+- Status Filter
+- Factory Floor
+- Machine Details
+- Activity Feed
+- Machine Table
+- Temperature Chart
+- Pressure Chart
+- Humidity Chart
+- Vibration Chart
+- CSV Export
+- PDF Export
+
+---
+
+# 🚀 Installation
+
+## Backend
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+
+uvicorn main:app --reload
+```
+
+---
+
+## Frontend
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+---
+
+# 📦 Required Packages
+
+## Backend
+
+```text
+fastapi
+uvicorn
+sqlalchemy
+psycopg2
+paho-mqtt
+pydantic
+```
+
+---
+
+## Frontend
+
+```bash
+npm install axios
+
+npm install chart.js react-chartjs-2
+
+npm install react-toastify
+
+npm install jspdf jspdf-autotable
+
+npm install papaparse
+```
+
+---
+
+# 🎯 Current Progress
+
+## Backend
+
+- ✅ REST APIs
+- ✅ PostgreSQL Integration
+- ✅ MQTT Subscriber
+- ✅ Analytics Engine
+- ✅ Health Calculation
+- ✅ Alert Generation
+
+---
+
+## Frontend
+
+- ✅ Dashboard
+- ✅ Live Monitoring
+- ✅ Factory Overview
+- ✅ Machine Details
+- ✅ Historical Charts
+- ✅ Search
+- ✅ Filters
+- ✅ Toast Notifications
+- ✅ CSV Export
+- ✅ PDF Export
+
+---
+
+# 🔜 Upcoming Features
+
+- Analytics Page
+- Historical Reports
+- Machine Performance Trends
+- Docker Support
+- User Authentication
+- Cloud Deployment
+- Live MQTT Status Monitoring
+- Predictive Maintenance Dashboard
+
+---
+
+# 👨‍💻 Author
+
+**R Sumukh Aryan**
+
+Electronics & Communication Engineering
+
+Industrial IoT | Embedded Systems | Full Stack Development
+
+---
+
+# ⭐ If you like this project
+
+Give the repository a ⭐ on GitHub.
